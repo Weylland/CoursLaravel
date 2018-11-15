@@ -13,6 +13,7 @@
     </head>
     <body class="container">
         <div class="section">
+            @include('flash::message')
             @yield('contenu')
         </div>
     </body>
