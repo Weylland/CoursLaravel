@@ -7,6 +7,10 @@ use Illuminate\Http\Request;
 class ConnexionController extends Controller
 {
     public function formulaire() {
+        if(auth()->check()) {
+            flash("vous êtes déjà connecte.")->error();
+            return redirect('/');
+        }
         return view('connexion');
     }
 

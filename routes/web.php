@@ -10,8 +10,7 @@
 | contains the "web" middleware group. Now create something great!
 |
 */
-
-Route::view('/', 'welcome');
+Route::get('/', 'UtilisateursController@liste');
 
 Route::get('/inscription', 'InscriptionController@formulaire');
 Route::post('/inscription', 'InscriptionController@traitement');
@@ -19,10 +18,14 @@ Route::post('/inscription', 'InscriptionController@traitement');
 Route::get('/connexion', 'ConnexionController@formulaire');
 Route::post('/connexion', 'ConnexionController@traitement');
 
-Route::get('/utilisateurs', 'UtilisateursController@liste');
-
-Route::get('/mon-compte', 'CompteController@acceuil');
-Route::get('/deconnexion', 'CompteController@deconnexion');
-Route::post('/modification-mot-de-passe','CompteController@modificationMotDePasse');
+Route::group([
+    'middleware' => 'App\Http\Middleware\Auth'
+], function () {
+    Route::get('/mon-compte', 'CompteController@acceuil');
+    Route::get('/deconnexion', 'CompteController@deconnexion');
+    Route::post('/modification-mot-de-passe','CompteController@modificationMotDePasse');
+    
+    Route::post('/messages', 'MessagesController@nouveau');
+});
 
 Route::get('/{email}', 'UtilisateursController@voir');
