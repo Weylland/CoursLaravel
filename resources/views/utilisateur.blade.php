@@ -1,8 +1,29 @@
 @extends('layout')
 
 @section('contenu')
-    <div>
-        <h1 class="title is-1">{{ $utilisateur->email }}</h1>
+    <div class="section">
+        <h1 class="title is-1">
+            <div class="level-left">
+                <div class="level-item">
+                    {{ $utilisateur->email }}
+                </div>
+                @auth                
+                    <form class="level-item" method="post" action="/{{ $utilisateur->email }}/suivis">
+                        {{ csrf_field() }}
+                        @if (auth()->user()->suit($utilisateur))
+                            {{ method_field('delete') }}
+                        @endif
+                        <button type="submit" class="button">
+                            @if (auth()->user()->suit($utilisateur))
+                                Ne plus suivre 
+                            @else
+                                Suivre 
+                            @endif
+                        </button>
+                    </form>
+                @endauth
+            </div>
+        </h1>
         
         @if (auth()->check() AND auth()->user()->id === $utilisateur->id)
 
@@ -27,5 +48,13 @@
             </form>
 
         @endif
+
+        @foreach($utilisateur->messages as $message)
+            <hr>
+            <p>
+                <strong>{{ $message->created_at }}</strong><br>
+                {{ $message->contenu }}
+            </p>
+        @endforeach
     </div>
 @endsection

@@ -11,8 +11,27 @@
         <script defer src="https://use.fontawesome.com/releases/v5.1.0/js/all.js"></script>
         
     </head>
-    <body class="container">
-        <div class="section">
+    <body>
+        <div class="navbar is-light">
+            <div class="navbar-menu">
+                <div class="navbar-start">
+                    @include('partials.navbar-item', [ 'lien' => '/', 'texte' => 'Acceuil'])
+                    @auth
+                        @include('partials.navbar-item', [ 'lien' => auth()->user()->email, 'texte' => auth()->user()->email])
+                    @endauth
+                </div>
+                <div class="navbar-end">
+                    @auth
+                        @include('partials.navbar-item', [ 'lien' => 'mon-compte', 'texte' => 'Mon compte'])
+                        @include('partials.navbar-item', [ 'lien' => 'deconnexion', 'texte' => 'Déconnexion'])
+                    @else
+                        @include('partials.navbar-item', [ 'lien' => 'connexion', 'texte' => 'Connexion'])
+                        @include('partials.navbar-item', [ 'lien' => 'inscription', 'texte' => 'Inscription'])
+                    @endauth
+                </div>
+            </div>
+        </div>
+        <div class="container">
             @include('flash::message')
             @yield('contenu')
         </div>

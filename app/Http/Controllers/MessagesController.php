@@ -11,8 +11,7 @@ class MessagesController extends Controller
             'message' => ['required'],
         ]);
 
-        Message::create([
-            'utilisateur_id' => auth()->id(),
+        auth()->user()->messages()->create([
             'contenu' => request('message'),
         ]);
 

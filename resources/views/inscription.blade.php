@@ -1,7 +1,7 @@
 @extends('layout')
 
 @section('contenu')
-    <form action="/inscription" method="post">
+    <form action="/inscription" method="post" class="section">
         {{ csrf_field() }}
         <div class="field">
             <label class="label">Email</label>

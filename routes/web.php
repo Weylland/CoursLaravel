@@ -26,6 +26,8 @@ Route::group([
     Route::post('/modification-mot-de-passe','CompteController@modificationMotDePasse');
     
     Route::post('/messages', 'MessagesController@nouveau');
+    Route::post('/{email}/suivis', 'SuivisController@nouveau');
+    Route::delete('/{email}/suivis', 'SuivisController@enlever');
 });
 
 Route::get('/{email}', 'UtilisateursController@voir');
