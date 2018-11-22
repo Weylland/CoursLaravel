@@ -22,9 +22,11 @@ Route::group([
     'middleware' => 'App\Http\Middleware\Auth'
 ], function () {
     Route::get('/mon-compte', 'CompteController@acceuil');
+    Route::get('/actualites', 'ActualitesController@liste');
     Route::get('/deconnexion', 'CompteController@deconnexion');
     Route::post('/modification-mot-de-passe','CompteController@modificationMotDePasse');
-    
+    Route::post('/modification-avatar','CompteController@modificationAvatar');
+
     Route::post('/messages', 'MessagesController@nouveau');
     Route::post('/{email}/suivis', 'SuivisController@nouveau');
     Route::delete('/{email}/suivis', 'SuivisController@enlever');

@@ -21,7 +21,8 @@ class InscriptionController extends Controller
             'email' => request('email'),
             'mot_de_passe' => bcrypt(request('password')),
         ]);
-    
-        return 'Nous avons reçu vôtre email qui est : ' . request('email') . ' et le mot de passe est : ' . request('password');
+        
+        flash('vous vous êtes enregistré avec succès.')->success();
+        return redirect('acceuil');
     }
 }

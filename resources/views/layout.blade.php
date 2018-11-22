@@ -17,6 +17,7 @@
                 <div class="navbar-start">
                     @include('partials.navbar-item', [ 'lien' => '/', 'texte' => 'Acceuil'])
                     @auth
+                        @include('partials.navbar-item', [ 'lien' => 'actualites', 'texte' => 'Actualités'])
                         @include('partials.navbar-item', [ 'lien' => auth()->user()->email, 'texte' => auth()->user()->email])
                     @endauth
                 </div>

@@ -29,4 +29,13 @@ class CompteController extends Controller
 
         return redirect('/mon-compte');
     }
+
+    public function modificationAvatar() {
+        request()->validate([
+            'avatar' => ['required', 'image'],
+        ]);
+
+        $path = request('avatar')->store('avatars');
+        return $path;
+    }
 }
