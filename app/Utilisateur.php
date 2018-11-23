@@ -8,7 +8,7 @@ use Illuminate\Auth\Authenticatable as BasicAuthenticatable;
 
 class Utilisateur extends Model implements Authenticatable {
     use BasicAuthenticatable;
-    protected $fillable = ['email', 'mot_de_passe'];
+    protected $fillable = ['email', 'mot_de_passe', 'avatar'];
 
     public function messages() {
         return $this->hasMany(Message::class)->latest();

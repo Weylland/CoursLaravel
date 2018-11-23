@@ -35,7 +35,13 @@ class CompteController extends Controller
             'avatar' => ['required', 'image'],
         ]);
 
-        $path = request('avatar')->store('avatars');
-        return $path;
+        $path = request('avatar')->store('avatars', 'public');
+
+        auth()->user()->update([
+            'avatar' => $path
+        ]);
+
+        flash("Votre avatar a bien été mis à jour.")->success();
+        return back();
     }
 }

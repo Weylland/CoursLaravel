@@ -5,8 +5,21 @@
         <h1 class="title is-1">
             <div class="level-left">
                 <div class="level-item">
-                    {{ $utilisateur->email }}
+                    <div class="section">
+                        <div class="media">
+                            <div class="media-left">
+                                <figure class="image is-48x48">
+                                    <img src="/storage/{{ $utilisateur->avatar }}" alt="{{ $utilisateur->avatar === null ? '' : 'Avatar'}}">
+                                </figure>
+                            </div>
+                            <div class="media-content">
+                                   {{$utilisateur->email}} 
+                            </div>
+                        </div>
+                    </div>
                 </div>
+
+
                 @auth                
                     <form class="level-item" method="post" action="/{{ $utilisateur->email }}/suivis">
                         {{ csrf_field() }}
